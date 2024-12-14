@@ -89,6 +89,42 @@ class LinkList {
         }
         return null;
     }
+    
+    Set(index, value) {
+        let temp = this.Get(index);
+        if(temp) {
+            temp.value = value;
+            return true;
+        }
+        return false;
+    }
+    Insert(index, value) {
+        if (index === 0) {
+            return this.unshift(value);
+        }
+        if (index === this.length) {
+            return this.push(value);
+        }
+        let newNode = new Node(value);
+        const temp = this.Get(index - 1);
+        
+        newNode.reference = temp.reference;
+        temp.reference = newNode;
+        this.length++;
+        return true;
+    }
+    size() {
+        let counter = 0;
+        let temp = this.head;
+        while (temp){
+            counter++;
+            temp = temp.reference;
+        }
+        return counter;
+    }
+    clear() {
+        this.head = null;
+    }
 }
 
 const Mylist = new LinkList(1);
@@ -100,5 +136,8 @@ Mylist.push(30);
 // Mylist.pop();
 // console.log(Mylist.GetFirst());
 // console.log(Mylist.GetLast());
-console.log(Mylist.Get(2));
-// console.log(Mylist);
+// console.log(Mylist.Get(2));
+// console.log(Mylist.Set(0,200));
+console.log(Mylist.Insert(1,500));
+console.log(Mylist.size());
+console.log(Mylist.clear());
