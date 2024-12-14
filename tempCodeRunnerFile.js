@@ -64,13 +64,41 @@ class LinkList {
         }
         return temp;
     }
+    GetFirst() {
+        return this.head;
+    }
+    GetLast() {
+        let temp = this.head;
+        while (temp) {
+            if (!temp.references) {
+                return temp;
+            }
+        }
+        temp = temp.references;
+    }
+    Get(index) {
+        let counter = 0;
+        let temp = this.head;
+        while (temp) {
+            if (counter === index) {
+                return temp;
+            }
+        
+            counter++;
+            temp = temp.reference;
+        }
+        return null;
+    }
 }
 
 const Mylist = new LinkList(1);
 Mylist.push(10);
-Mylist.push(10);
-Mylist.push(10);
-Mylist.unshift(1111);
-Mylist.shift();
+Mylist.push(50);
+Mylist.push(30);
+// Mylist.unshift(1111);
+// Mylist.shift();
 // Mylist.pop();
-console.log(Mylist);
+// console.log(Mylist.GetFirst());
+// console.log(Mylist.GetLast());
+console.log(Mylist.Get(2));
+// console.log(Mylist);
