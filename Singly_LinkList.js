@@ -125,12 +125,30 @@ class LinkList {
     clear() {
         this.head = null;
     }
+    reverse() {
+        let temp = this.head;
+        this.head = this.tail;
+        this.tail = temp;
+        let next = temp;
+        let prev = null;
+        for (let i = 0; i < temp.length; i++){
+            next = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = next;
+        }
+        return this;
+    }
 }
 
 const Mylist = new LinkList(1);
 Mylist.push(10);
-Mylist.push(50);
+Mylist.push(20);
 Mylist.push(30);
+Mylist.push(40);
+Mylist.push(50);
+Mylist.reverse();
+console.log(Mylist);
 // Mylist.unshift(1111);
 // Mylist.shift();
 // Mylist.pop();
@@ -138,6 +156,6 @@ Mylist.push(30);
 // console.log(Mylist.GetLast());
 // console.log(Mylist.Get(2));
 // console.log(Mylist.Set(0,200));
-console.log(Mylist.Insert(1,500));
-console.log(Mylist.size());
-console.log(Mylist.clear());
+// console.log(Mylist.Insert(1,500));
+// console.log(Mylist.size());
+// console.log(Mylist.clear());
